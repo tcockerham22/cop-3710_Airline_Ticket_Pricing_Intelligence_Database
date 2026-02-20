@@ -8,5 +8,8 @@ Goals:
 - Analyze trends across seasonal pricing patterns
 - Provide a structured database for reporting and visualization
 
+Database Overview:
+The system includes core entities such as Airline, Airport, Route, and Flight, along with a weak entity to track time-based fare changes and an associative entity to model airline participation on routes. A key design challenge is accurately representing fare fluctuations over time using composite keys while maintaining clear one-to-one, one-to-many, and many-to-many relationships
+
 Data Sources:
 - https://www.kaggle.com/datasets/nikhilmittal/flight-fare-prediction-mh
