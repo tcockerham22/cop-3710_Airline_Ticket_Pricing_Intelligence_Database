@@ -1,1 +1,1 @@
-![Airline Pricing ER Diagram](Course Project ER diagram.png)
+![Airline Pricing ER Diagram](Course_Project_ER_diagram.png)
