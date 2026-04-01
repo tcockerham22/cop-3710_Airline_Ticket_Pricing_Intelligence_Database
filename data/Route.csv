@@ -1,0 +1,6 @@
+RouteID,OriginAirport,DestinationAirport,Distance
+R1,BLR,DEL,1629.17
+R2,CCU,BLR,4264.58
+R3,DEL,COK,10925.0
+R4,MAA,CCU,1293.75
+R5,BOM,HYD,14422.92
