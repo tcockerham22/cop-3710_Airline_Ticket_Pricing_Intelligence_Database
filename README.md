@@ -13,3 +13,7 @@ The system includes core entities such as Airline, Airport, Route, and Flight, a
 
 Data Sources:
 - https://www.kaggle.com/datasets/nikhilmittal/flight-fare-prediction-mh
+
+Final ER Design:
+![Airline Pricing ER Diagram](images/Course_Project_ER_diagram.png)
+
