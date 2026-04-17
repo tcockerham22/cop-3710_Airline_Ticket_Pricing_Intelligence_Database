@@ -19,9 +19,6 @@ def get_connection():
         dsn=DB_DSN
     )
 
-
-# LOAD AIRPORTS INTO DROPDOWN
-
 def load_airports():
     try:
         conn = get_connection()
@@ -44,15 +41,9 @@ def load_airports():
     except Exception as e:
         messagebox.showerror("Error loading airports", str(e))
 
-# ==============================
-# EXTRACT AIRPORT CODE
-# ==============================
 def extract_code(selection):
     return selection.split(" - ")[0]
 
-# ==============================
-# SEARCH FUNCTION (ROUND TRIP)
-# ==============================
 def search_flights():
     origin_sel = origin_dropdown.get()
     dest_sel = dest_dropdown.get()
@@ -74,13 +65,9 @@ def search_flights():
         conn = get_connection()
         cursor = conn.cursor()
 
-        # Clear table
         for row in tree.get_children():
             tree.delete(row)
 
-        # ==========================
-        # OUTBOUND FLIGHTS
-        # ==========================
         outbound_query = """
         SELECT 'OUTBOUND',
                f.FlightID,
@@ -103,9 +90,6 @@ def search_flights():
 
         outbound_rows = cursor.fetchall()
 
-        # ==========================
-        # RETURN FLIGHTS
-        # ==========================
         return_query = """
         SELECT 'RETURN',
                f.FlightID,
@@ -134,7 +118,6 @@ def search_flights():
             messagebox.showinfo("No Results", "No flights found for selected dates")
             return
 
-        # Insert into table
         for row in all_rows:
             tree.insert("", "end", values=row)
 
@@ -144,49 +127,35 @@ def search_flights():
     except Exception as e:
         messagebox.showerror("Database Error", str(e))
 
-# ==============================
-# CLEAR FUNCTION
-# ==============================
 def clear_results():
     origin_dropdown.set("")
     dest_dropdown.set("")
     for row in tree.get_children():
         tree.delete(row)
 
-# ==============================
-# GUI SETUP
-# ==============================
 root = tk.Tk()
 root.title("Flight Search System (Oracle Thick Mode)")
 root.geometry("800x500")
 
-# --- ORIGIN ---
 tk.Label(root, text="Origin Airport").pack()
 origin_dropdown = ttk.Combobox(root, state="readonly", width=40)
 origin_dropdown.pack()
 
-# --- DESTINATION ---
 tk.Label(root, text="Destination Airport").pack()
 dest_dropdown = ttk.Combobox(root, state="readonly", width=40)
 dest_dropdown.pack()
 
-# --- DEPART DATE ---
 tk.Label(root, text="Departure Date").pack()
 depart_date = DateEntry(root, date_pattern='yyyy-mm-dd')
 depart_date.pack()
 
-# --- RETURN DATE ---
 tk.Label(root, text="Return Date").pack()
 return_date = DateEntry(root, date_pattern='yyyy-mm-dd')
 return_date.pack()
 
-# --- BUTTONS ---
 tk.Button(root, text="Search Flights", command=search_flights).pack(pady=10)
 tk.Button(root, text="Clear", command=clear_results).pack()
 
-# ==============================
-# RESULTS TABLE
-# ==============================
 columns = ("TripType", "FlightID", "FlightNumber",
            "DepartureTime", "ArrivalTime", "FareAmount")
 
@@ -198,12 +167,6 @@ for col in columns:
 
 tree.pack(expand=True, fill="both")
 
-# ==============================
-# LOAD DATA
-# ==============================
 load_airports()
 
-# ==============================
-# RUN APP
-# ==============================
 root.mainloop()
