@@ -1,14 +1,13 @@
 import streamlit as st
 import oracledb
 import pandas as pd
-import os
 
-#Replace with own information
 oracledb.init_oracle_client(lib_dir=r"C:\Users\docto\OneDrive - Florida Polytechnic University\Florida Poly Stuff\Database\InClass\instantclient-basic-windows.x64-23.26.1.0.0\instantclient_23_0")
 
 DB_USER = "TCOCKERHAM3539_SCHEMA_0ZQNY"
 DB_PASS = r"LU4YSUHWRO4IWRDPTMPG0oIHNDYQ$M"
 DB_DSN = "db.freesql.com:1521/23ai_34ui2"
+
 
 def get_connection():
     return oracledb.connect(user=DB_USER, password=DB_PASS, dsn=DB_DSN)
@@ -41,10 +40,10 @@ st.title("Airline Database System")
 airports_df = load_airports()
 
 feature = st.sidebar.selectbox("Select Feature", [
+    "Price History",
     "Search Flights",
     "View Airlines on Route",
     "Flights by Aircraft",
-    "Price History",
     "Routes from Airport"
 ])
 
@@ -131,7 +130,8 @@ elif feature == "Price History":
         """
 
         df = run_query(query, {"flight_id": flight_id})
-        st.dataframe(df)
+        df.columns = [col.upper() for col in df.columns]
+        st.dataframe(df, column_config={"FAREAMOUNT": st.column_config.NumberColumn("Fare Amount", format="$%,.2f")})
 
 elif feature == "Routes from Airport":
     st.header("Routes from Airport")
