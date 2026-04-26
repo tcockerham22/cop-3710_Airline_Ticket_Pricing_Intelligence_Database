@@ -17,3 +17,16 @@ Data Sources:
 Final ER Design:
 ![Airline Pricing ER Diagram](images/Course_Project_ER_diagram.png)
 
+How to use this repo:
+ - Step 1: download create_db.sql, dataload.py, preprocess.py, app.py, Course Project data.xlsx or data folder with csv files
+ - Install latest oracle windows client
+ - Replace required spaces with own information
+ - use "pip install streamlit oracledb pandas 
+ - Run "create_db.sql" to create the database
+ - (if data folder downloaded then skip next step)
+ - Run "preprocess.py" to format data into csv files
+ - Run "dataload.py" to poplate the database
+ - Run app.py using the command "python -m streamlit run app.py"
+
+App Home Page:
+![Airline Pricing ER Diagram](images/app_home_page.png)
