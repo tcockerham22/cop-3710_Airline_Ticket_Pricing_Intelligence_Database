@@ -1,16 +1,15 @@
 import streamlit as st
 import oracledb
 import pandas as pd
-# --- REQUIRED FOR THICK MODE ---
-oracledb.init_oracle_client(lib_dir=r"C:\oracle\instantclient_23_0")
+import os
 
-# --- DATABASE CONFIG ---
+#Replace with own information
+oracledb.init_oracle_client(lib_dir=r"C:\Users\docto\OneDrive - Florida Polytechnic University\Florida Poly Stuff\Database\InClass\instantclient-basic-windows.x64-23.26.1.0.0\instantclient_23_0")
+
 DB_USER = "TCOCKERHAM3539_SCHEMA_0ZQNY"
 DB_PASS = r"LU4YSUHWRO4IWRDPTMPG0oIHNDYQ$M"
 DB_DSN = "db.freesql.com:1521/23ai_34ui2"
 
-
-# --- CONNECT FUNCTION ---
 def get_connection():
     return oracledb.connect(user=DB_USER, password=DB_PASS, dsn=DB_DSN)
 

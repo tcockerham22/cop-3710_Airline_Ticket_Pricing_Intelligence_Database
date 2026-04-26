@@ -5,14 +5,14 @@ from datetime import date
 import random
 import string
 
-excel_file_name = r'C:\Users\docto\OneDrive - Florida Polytechnic University\Florida Poly Stuff\Database\Course Project\Course Project data.xlsx' # Replace with your Excel file name
+#Replace with own information
+excel_file_name = r'C:\Users\docto\OneDrive - Florida Polytechnic University\Florida Poly Stuff\Database\Course Project\Course Project data.xlsx'
 output_dir = r"C:\Users\docto\OneDrive - Florida Polytechnic University\Florida Poly Stuff\Database\Course Project\Part D\data"
 
 df = pd.read_excel(excel_file_name, sheet_name="Sheet1")
 
 airline_names = df['Airline'].unique()
 
-# Headquarters lookup
 headquarters = {
     "IndiGo": "India",
     "Air India": "India",

@@ -1,8 +1,8 @@
 import oracledb
 import csv
-import os  # add this import
+import os 
 
-# --- SETUP ---
+#Replace with own information
 LIB_DIR = r"C:\Users\docto\OneDrive - Florida Polytechnic University\Florida Poly Stuff\Database\InClass\instantclient-basiclite-windows.x64-11.2.0.4.0\instantclient_11_2"
 data_dir = r"C:\Users\docto\OneDrive - Florida Polytechnic University\Florida Poly Stuff\Database\Course Project\Part D\data"
 DB_USER = "TCOCKERHAM3539_SCHEMA_0ZQNY"
@@ -24,9 +24,8 @@ def clear_tables():
 
 def bulk_load_csv(file_path, sql):
     try:
-        # Build absolute path relative to this script's directory
         abs_path = os.path.join(data_dir, file_path)
-        print(f"Looking for file at: {abs_path}")  # helpful debug line
+        print(f"Looking for file at: {abs_path}")
 
         conn = oracledb.connect(user=DB_USER, password=DB_PASS, dsn=DB_DSN)
         cursor = conn.cursor()
